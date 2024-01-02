@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create children elements</title>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+
+    // Create root element
+    const root = document.getElementById('root');
+
+    // First child
+    const childFirst = React.createElement('h1', null, "I'm a first child!");
+    
+    // Second child
+    const childSecond = React.createElement('h2', null, "I'm a second child!");
+
+    // Solve children to one element
+    const children = React.createElement('div', null, childFirst, childSecond);
+
+    // Render them
+    ReactDOM.render(children, root) // who, where
+
+    </script>
+</body>
+</html>

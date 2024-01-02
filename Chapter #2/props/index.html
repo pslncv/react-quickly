@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create class components</title>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+
+    // Create root element
+    const root = document.getElementById('root')
+    
+    // Create custom component
+    class Framework extends React.Component {
+
+        // Important render()!!!
+        render() {
+
+            // Important return()!!!
+            return (
+                React.createElement('div', this.props, 'Hello ' + this.props.name + '!')
+            )
+        }
+    }
+
+    // Render one element with 3 children Framework elements (with props)
+    ReactDOM.render(
+        React.createElement('div', null,
+            React.createElement(Framework, {
+                id: 1,
+                name: 'vue',
+                difficult: 'easy',
+            }),
+            React.createElement(Framework, {
+                id: 2,
+                name: 'react',
+                difficult: 'medium'
+            }),
+            React.createElement(Framework, {
+                id: 3,
+                name: 'angular',
+                difficult: 'hard'
+            }),
+        ),
+        root
+    )
+
+    </script>
+</body>
+</html>
