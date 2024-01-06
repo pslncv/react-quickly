@@ -37,13 +37,36 @@ ReactDOM.render (
 class Theme extends React.Component {
     render() {
         return (
-            <div data-react-is-awesome={this.props.reactIsAwesome}>React is awesome</div>
+            <div data-react-is-awesome={this.props.reactIsAwesome}>React is awesome? {this.props.reactIsAwesome}</div>
         )
     }
 }
 ReactDOM.render(
     <Theme
-        reactIsAwesome="true"
+        reactIsAwesome="YES!"
     />,
     document.getElementById('awesome')
+)
+
+// All props
+class Human extends React.Component {
+    render () {
+        return (
+            <div {...this.props}>
+                <div>Hello, my name is {this.props.name}</div>
+                <div>I'm {this.props.age}</div>
+                <div>And I from {this.props.city}</div>
+            </div>           
+        )
+    }
+}
+ReactDOM.render(
+    <Human
+        id="testID"
+        className="testCLASS"
+        name="Alex"
+        age="22"
+        city="LA"
+    />,
+    document.getElementById('human')
 )

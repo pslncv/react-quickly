@@ -30,9 +30,23 @@ class Theme extends React.Component {
   render() {
     return /*#__PURE__*/React.createElement("div", {
       "data-react-is-awesome": this.props.reactIsAwesome
-    }, "React is awesome");
+    }, "React is awesome? ", this.props.reactIsAwesome);
   }
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Theme, {
-  reactIsAwesome: "true"
+  reactIsAwesome: "YES!"
 }), document.getElementById('awesome'));
+
+// All props
+class Human extends React.Component {
+  render() {
+    return /*#__PURE__*/React.createElement("div", this.props, /*#__PURE__*/React.createElement("div", null, "Hello, my name is ", this.props.name), /*#__PURE__*/React.createElement("div", null, "I'm ", this.props.age), /*#__PURE__*/React.createElement("div", null, "And I from ", this.props.city));
+  }
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Human, {
+  id: "testID",
+  className: "testCLASS",
+  name: "Alex",
+  age: "22",
+  city: "LA"
+}), document.getElementById('human'));
