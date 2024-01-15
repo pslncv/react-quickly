@@ -1,4 +1,3 @@
-// Custom random naumber component by me
 class Lifecycle extends React.Component {
     constructor() {
         super()
