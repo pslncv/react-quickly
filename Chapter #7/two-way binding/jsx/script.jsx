@@ -3,61 +3,59 @@ class App extends React.Component {
         super()
         this.state = {
             inputValue: '',
-            result: {}
-        };
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmitForm = this.handleSubmitForm.bind(this);
-        this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
+            radio: {
+                DAO: true,
+                DA2: false,
+                DAI: false
+            }
+        }
+        this.handleInput = this.handleInput.bind(this);
+        this.handleRadio = this.handleRadio.bind(this);
     }
     componentDidMount() {
-        console.log(this.state.result);
-        const form = document.getElementById('form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-        })
+        console.log(this.state.radio);
     }
-    handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value,
-            result: {inputValue: e.target.value}
-        })
-        console.clear()
-        console.log(this.state.result);
+    handleInput(e) {
+        this.setState({inputValue: e.target.value})
     }
-    handleChangeCheckbox(e) {
-        this.setState({
-            result: {isChecked: e.target.checked}
-        })
-        console.clear()
-        console.log(this.state.result);
+    handleRadio(e) {
+        let obj = Object.assign(this.state.radio);
+        for (let key in obj) {
+            obj[key] = false;
+        };
+        obj[e.target.value] = true;
+        this.setState({radio: obj});
     }
-    handleSubmitForm(e) {
-        console.table('Submit!', this.state.result);
+    componentDidUpdate() {
+        console.log(this.state.radio);
     }
     render() {
         return (
-            <div>            
-                <h2>Two-way binding</h2>
-                <form id="form" onSubmit={this.handleSubmitForm} style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', rowGap: '10px'}}>
-                    <div>
-                        <label style={{display: 'block'}}>Input value: {this.state.inputValue}</label>
-                        <input onChange={this.handleInputChange} id="input" type="text" value={this.state.inputValue}/>
-                    </div>
-                <div>
-                    <label style={{display: 'block'}}>Checked?: {this.state.isChecked}</label>
-                    <input onChange={this.handleChangeCheckbox} type="checkbox" id="checkbox"/>
+            <div style={{display: "flex", flexDirection: "column", rowGap: "20px"}}>
+                <div style={{maxWidth: "300px", display: "flex", flexDirection: "column"}}>
+                    <input id="input__text" type="text" value={this.state.inputValue} onChange={this.handleInput}/>
+                    <label htmlFor="input__text">Значение инпута: {this.state.inputValue || "Пусто!"}</label>
                 </div>
-                
-                <input type="color" name="" id="" />
-                <input type="radio" name="" id="" />
-                <input type="radio" name="" id="" />
-                <input type="radio" name="" id="" />
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </form>
+                <div style={{maxWidth: "300px", display: "flex", flexDirection: "column"}}>
+                    <div style={{display: "flex", flexDirection: "column", alignItems: "start"}}>
+                        <div style={{display: "flex", alignItems: "center", columnGap: "5px"}}>
+                            <input id="input__radio-1" name="input__radio" type="radio" value="DAO" checked={this.state.radio['DAO']} onChange={this.handleRadio}/>
+                            <label htmlFor="input__radio-1">Dragon Age: Origins</label>
+                        </div>
+                        <div style={{display: "flex", alignItems: "center", columnGap: "5px"}}>
+                            <input id="input__radio-2" name="input__radio" type="radio" value="DA2" checked={this.state.radio['DA2']} onChange={this.handleRadio}/>
+                            <label htmlFor="input__radio-2">Dragon Age 2</label>
+                        </div>
+                        <div style={{display: "flex", alignItems: "center", columnGap: "5px"}}>
+                            <input id="input__radio-3" name="input__radio" type="radio" value="DAI" checked={this.state.radio['DAI']} onChange={this.handleRadio}/>
+                            <label htmlFor="input__radio-3">Dragon Age: Inquisition</label>
+                        </div>
+                    </div>
+                    <label>Значение инпута:</label>
+                </div>
             </div>
         )
-    }
-    
+    }    
 }
 
 ReactDOM.render(
