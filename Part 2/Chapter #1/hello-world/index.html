@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+</head>
+<body>
+    <div id="component-1"></div>
+    <div id="component-2"></div>
+    <script>
+
+        // Простой вариант
+        ReactDOM.render(
+            React.createElement('h1', {class: 'greeting'}, 'Hello World! #1'),
+            document.getElementById('component-1')
+        );
+        
+        // Более элегантный вариант
+        const greeting = React.createElement('h1', {class: 'greeting'}, 'Hello World! #2');
+        const path = document.getElementById('component-2');
+        ReactDOM.render(greeting, path);
+
+        </script>
+</body>
+</html>
