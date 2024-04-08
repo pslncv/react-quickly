@@ -1,0 +1,37 @@
+h1, h3 {
+    font-family: monospace;
+}
+
+.timer__header {
+    font-size: 30px;
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.timer__title {
+    margin: 0 auto;
+}
+
+button.timer-button {
+    font-weight: 600;
+    color: #FFF;
+    background-color: rgb(194, 194, 194);
+    margin: 0 7px 0 0;
+    padding: 13px;
+    border: none;
+    border-radius: 0;
+    transition: transform .2s ease-in-out, background-color .2s ease-in-out;
+    cursor: pointer;
+}
+
+button.timer-button:hover {
+    background-color: rgb(155, 155, 155);
+    transform: scale(1.1);
+}
+
+button.timer-button:active {
+    transition: all 0s;
+    transform: scale(0.9);
+}
