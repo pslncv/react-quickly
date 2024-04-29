@@ -1,21 +1,25 @@
-const Timer = props => {
-  if (props.timeLeft == 0) {
-    document.getElementById('audio').play();
+class Button extends React.Component {
+  startTimer(event) {
+    return this.props.startTimer(this.props.time);
   }
-  if (props.timeLeft == null || props.timeLeft == 0) {
-    return /*#__PURE__*/React.createElement("div", null);
+  render() {
+    return /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      onClick: this.startTimer.bind(this)
+    }, this.props.time, " seconds");
   }
-  return /*#__PURE__*/React.createElement("h3", null, "Time left: ", props.timeLeft);
-};
-const Button = props => {
-  const startTimer = () => {
-    return props.startTimer(props.time);
-  };
-  return /*#__PURE__*/React.createElement("button", {
-    onClick: startTimer,
-    className: "timer-button"
-  }, props.time, " seconds");
-};
+}
+class Timer extends React.Component {
+  render() {
+    if (this.props.timeLeft == 0) {
+      document.getElementById('end-of-time').play();
+    }
+    if (this.props.timeLeft == null || this.props.timeLeft == 0) {
+      return /*#__PURE__*/React.createElement("div", null);
+    }
+    return /*#__PURE__*/React.createElement("h1", null, "Time left: ", this.props.timeLeft);
+  }
+}
 class TimerWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -28,8 +32,8 @@ class TimerWrapper extends React.Component {
   startTimer(timeLeft) {
     clearInterval(this.state.timer);
     let timer = setInterval(() => {
-      var timeLeft = this.state.timeLeft - 1;
-      if (timeLeft === 0) clearInterval(timer);
+      let timeLeft = this.state.timeLeft - 1;
+      if (timeLeft == 0) clearInterval(timer);
       this.setState({
         timeLeft: timeLeft
       });
@@ -40,11 +44,7 @@ class TimerWrapper extends React.Component {
     });
   }
   render() {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "timer__header"
-    }, /*#__PURE__*/React.createElement("h1", {
-      className: "timer__title"
-    }, "Timer"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Button, {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, "Timer"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Button, {
       time: "5",
       startTimer: this.startTimer
     }), /*#__PURE__*/React.createElement(Button, {
@@ -56,7 +56,7 @@ class TimerWrapper extends React.Component {
     })), /*#__PURE__*/React.createElement(Timer, {
       timeLeft: this.state.timeLeft
     }), /*#__PURE__*/React.createElement("audio", {
-      id: "audio",
+      id: "end-of-time",
       src: "flute_c_long_01.wav",
       preload: "auto"
     }));
