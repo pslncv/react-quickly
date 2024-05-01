@@ -1,0 +1,32 @@
+{
+  "name": "email-webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "/node_modules/.bin/webpack -w",
+    "wds-cli": "./node_modules/.bin/webpack-dev-server --inline --hot --module-bind 'css=style-loader!css-loader' --module-bind 'jsx=react-hot-loader!babel-loader' --config webpack.dev-cli.config.js",
+    "wds": "./node_modules/.bin/webpack-dev-server --config webpack.dev.config.js"
+  },
+  "author": "Alexander Poselencev",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "description": "",
+  "devDependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "css-loader": "^7.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hot-loader": "^4.13.1",
+    "style-loader": "^4.0.0",
+    "webpack": "2.4.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "2.4.2"
+  }
+}
